@@ -1,0 +1,4 @@
+- increase batch size (make it learn faster maybe, careful not to use up all memory)
+	- https://towardsdatascience.com/implementing-a-batch-size-finder-in-fastai-how-to-get-a-4x-speedup-with-better-generalization-813d686f6bdf#:~:text=Moreover%2C%20by%20using%20bigger%20batch,2x%20gain%20in%20computational%20time!
+- add dropout
+- increase number of neurons
