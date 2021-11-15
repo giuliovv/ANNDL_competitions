@@ -1,16 +1,12 @@
 import os
 import tensorflow as tf
-import numpy as np
 
 class Model:
     def __init__(self, path):
-        self.path = path
-        pass
+        self.model = tf.keras.models.load_model(os.path.join(path, 'SubmissionModel/model1_20'))
+        return
 
     def predict(self, X):
-        """
-        X: numpy.ndarray of shape (1, H, W, C) containing the dataset
-        """
-        model = tf.keras.load(self.path+"model")
-        res = model.predict(X.reshape(X.shape[1], X.shape[2], X.shape[3]))
-        return np.argmax(res)
+        X = tf.keras.applications.vgg16.preprocess_input(X)
+        prediction = self.model.predict(X)
+        return tf.argmax(prediction, axis=-1)
