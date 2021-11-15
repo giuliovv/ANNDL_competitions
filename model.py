@@ -1,5 +1,6 @@
 import os
 import tensorflow as tf
+import numpy as np
 
 class Model:
     def __init__(self, path):
@@ -8,8 +9,8 @@ class Model:
 
     def predict(self, X):
         """
-        X: numpy.ndarray of shape (n, d) containing the dataset
+        X: numpy.ndarray of shape (1, H, W, C) containing the dataset
         """
         model = tf.keras.load(self.path+"model")
-        model.predict(X)
-        pass
+        res = model.predict(X.reshape(X.shape[1], X.shape[2], X.shape[3]))
+        return np.argmax(res)
